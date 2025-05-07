@@ -7,7 +7,6 @@ let affirmations = [];
 fetch('affirmations.txt')
   .then(response => response.text())
   .then(data => {
-    // Using regex to match all content inside quotes
     affirmations = [...data.matchAll(/"([^"]+)"/g)].map(match => match[1].trim());
   });
 
@@ -38,6 +37,7 @@ function playSelectedSong() {
 }
 
 function togglePlayPause() {
+  const select = document.getElementById("music-select");
   select.options[0].disabled = true;
   select.options[0].style.display = "none"; 
   if (!audio.src) return;
@@ -61,7 +61,6 @@ function showAffirmation() {
   text.textContent = randomAffirmation;
   box.classList.add("show");
 }
-
 
 function createTiles() {
   tiles = [];
@@ -102,13 +101,11 @@ function moveTile(index) {
 
 function shuffle() {
   isLocked = false; 
-  // Hide affirmation box
   const box = document.getElementById("affirmation-box");
   box.classList.remove("show");
 
   do {
     createTiles();
-    // Fisher-Yates shuffle
     for (let i = tiles.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
@@ -148,19 +145,20 @@ function easyWin() {
   }, 200);
 }
 
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+function createStar() {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.animationDuration = 4 + Math.random() * 4 + "s";
 
-  document.getElementById("heart-container").appendChild(heart);
+  document.getElementById("heart-container").appendChild(star);
 
   setTimeout(() => {
-    heart.remove();
+    star.remove();
   }, 8000);
 }
 
-setInterval(createHeart, 800);
+setInterval(createStar, 800);
 
 shuffle();
+  
