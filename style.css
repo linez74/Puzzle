@@ -77,3 +77,27 @@ button {
 button:hover {
   background-color: #ff4f9e;
 }
+
+#affirmation-box {
+  max-width: 90%;
+  margin: 20px auto;
+  background: #ffe0ec;
+  border: 2px dashed #ffb6c1;
+  border-radius: 15px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.2);
+  font-size: 16px;
+  color: #d63384;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+#affirmation-box.show {
+  display: block;
+  animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
