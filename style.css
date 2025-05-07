@@ -78,6 +78,7 @@ button {
 button:hover {
   background-color: #ff4f9e;
 }
+
 .music-player {
   margin-top: 20px;
   text-align: center;
@@ -98,6 +99,7 @@ button:hover {
   color: #d63384;
   font-size: 1rem;
 }
+
 #heart-container {
   position: fixed;
   inset: 0;
@@ -115,8 +117,9 @@ button:hover {
   height: 20px;
   background: pink;
   transform: rotate(45deg);
-  animation: float 6s linear infinite, pulse 1s ease-in-out infinite;
+  animation: float 6s linear forwards;
   opacity: 0.6;
+  z-index: 1;
 }
 
 .heart::before,
@@ -127,6 +130,7 @@ button:hover {
   height: 20px;
   background: pink;
   border-radius: 50%;
+  animation: pulse 1s ease-in-out infinite;
 }
 
 .heart::before {
@@ -152,10 +156,10 @@ button:hover {
 
 @keyframes pulse {
   0%, 100% {
-    transform: scale(1) rotate(45deg);
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.2) rotate(45deg);
+    transform: scale(1.3);
   }
 }
 
