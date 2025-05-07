@@ -16,7 +16,10 @@ let currentSong = "";
 
 function toggleMusicMenu() {
   const menu = document.getElementById("music-menu");
+  const select = document.getElementById("music-select");
   menu.classList.toggle("hidden");
+  select.options[0].disabled = true;
+  select.options[0].style.display = "none"; 
 }
 
 function playSelectedSong() {
