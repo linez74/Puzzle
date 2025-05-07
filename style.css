@@ -78,6 +78,84 @@ button {
 button:hover {
   background-color: #ff4f9e;
 }
+.music-player {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+#music-menu {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.now-playing-text {
+  margin-top: 10px;
+  font-style: italic;
+  color: #d63384;
+  font-size: 1rem;
+}
+#heart-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  transform: rotate(45deg);
+  animation: float 6s linear infinite, pulse 1s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(45deg);
+  }
+  100% {
+    transform: translateY(-10vh) rotate(45deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1) rotate(45deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(45deg);
+  }
+}
 
 #affirmation-box {
   max-width: 90%;
