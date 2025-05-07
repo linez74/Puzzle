@@ -9,6 +9,19 @@
 </head>
 <body>
   <h1>Daily Affirmations Puzzle</h1>
+  <div class="music-player">
+  <button onclick="toggleMusicMenu()">Music</button>
+  <div id="music-menu" class="hidden">
+    <select id="music-select" onchange="playSelectedSong()">
+      <option value="">Select a song</option>
+      <option value="music/Bubblegum.mp3">Bubblegum - Sater</option>
+      <option value="music/Grateful.mp3">Grateful - Sater</option>
+      <option value="music/Waves.mp3">Waves - Sater</option>
+    </select>
+    <button onclick="togglePlayPause()">Pause/Play</button>
+  </div>
+  <div id="now-playing" class="now-playing-text"></div>
+  </div>
   <p>Tap or click tiles to slide them into the empty space.</p>
   <div id="puzzle"></div>
   <button onclick="shuffle()">Shuffle</button>
