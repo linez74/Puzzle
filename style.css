@@ -122,7 +122,7 @@ button:hover {
     21% 91%, 32% 57%, 2% 35%, 
     39% 35%
   );
-  animation: float 6s linear infinite, pulse 1s ease-in-out infinite;
+  animation: float 15s linear infinite, pulse 2s ease-in-out infinite;
   opacity: 0.6;
 }
 
