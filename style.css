@@ -111,6 +111,7 @@ button:hover {
 }
 
 .star {
+  display: block;
   position: absolute;
   bottom: 0;
   width: 20px;
