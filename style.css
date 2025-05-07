@@ -100,7 +100,7 @@ button:hover {
   font-size: 1rem;
 }
 
-#heart-container {
+#star-container {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -126,35 +126,13 @@ button:hover {
   opacity: 0.6;
 }
 
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: pink;
-  border-radius: 50%;
-  animation: pulse 1s ease-in-out infinite;
-}
-
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-
-.heart::after {
-  left: -10px;
-  top: 0;
-}
-
 @keyframes float {
   0% {
-    transform: translateY(0) rotate(45deg);
+    transform: translateY(0);
     opacity: 0.8;
   }
   100% {
-    transform: translateY(-100vh) rotate(45deg);
+    transform: translateY(-100vh);
     opacity: 0;
   }
 }
