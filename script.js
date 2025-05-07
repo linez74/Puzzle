@@ -1,5 +1,6 @@
 const puzzle = document.getElementById("puzzle");
 let tiles = [];
+let isLocked = false;
 
 const affirmations = [
   "You are exactly where you need to be today.",
@@ -38,19 +39,22 @@ function drawTiles() {
 }
 
 function moveTile(index) {
-  const emptyIndex = tiles.indexOf("");
-  const validMoves = [index - 1, index + 1, index - 4, index + 4];
+  if (isLocked) return;
 
-  // prevent wraparound (left/right edge)
-  if (index % 4 === 0 && emptyIndex === index - 1) return;
-  if (index % 4 === 3 && emptyIndex === index + 1) return;
+  const emptyIndex = tiles.indexOf("");
+  const validMoves = [index - 1, index + 1, index - 4, index + 4];
 
-  if (validMoves.includes(emptyIndex)) {
-    [tiles[emptyIndex], tiles[index]] = [tiles[index], tiles[emptyIndex]];
-    drawTiles();
-    checkWin();
-  }
+  // prevent wraparound (left/right edge)
+  if (index % 4 === 0 && emptyIndex === index - 1) return;
+  if (index % 4 === 3 && emptyIndex === index + 1) return;
+
+  if (validMoves.includes(emptyIndex)) {
+    [tiles[emptyIndex], tiles[index]] = [tiles[index], tiles[emptyIndex]];
+    drawTiles();
+    checkWin();
+  }
 }
+
 
 function shuffle() {
   // Hide affirmation box
@@ -84,6 +88,7 @@ function isSolvable() {
 function checkWin() {
   const win = [...Array(15).keys()].map(x => x + 1).concat("");
   if (tiles.every((val, i) => val === win[i])) {
+    isLocked = true;
     setTimeout(() => {
   showAffirmation();
 }, 200);
@@ -93,6 +98,7 @@ function checkWin() {
 function easyWin() {
   tiles = [...Array(15).keys()].map(x => x + 1).concat("");
   drawTiles();
+  isLocked = true;
   setTimeout(() => {
     showAffirmation();
   }, 200);
