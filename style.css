@@ -60,6 +60,7 @@ p {
   background: transparent;
   box-shadow: none;
   cursor: default;
+  pointer-events: none;
 }
 
 button {
