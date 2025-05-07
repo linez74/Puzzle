@@ -46,10 +46,16 @@ function togglePlayPause() {
 function showAffirmation() {
   const box = document.getElementById("affirmation-box");
   const text = document.getElementById("affirmation-text");
-  const random = affirmations[Math.floor(Math.random() * affirmations.length)];
-  text.textContent = random;
+
+  if (affirmations.length === 0) return;
+
+  const randomIndex = Math.floor(Math.random() * affirmations.length);
+  const randomAffirmation = affirmations[randomIndex];
+  
+  text.textContent = randomAffirmation;
   box.classList.add("show");
 }
+
 
 function createTiles() {
   tiles = [];
