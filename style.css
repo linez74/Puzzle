@@ -19,8 +19,8 @@ p {
 }
 
 #puzzle {
-  width: 320px;
-  height: 320px;
+  width: min(90vw, 400px);
+  height: min(90vw, 400px);
   margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
