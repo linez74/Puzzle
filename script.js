@@ -22,7 +22,8 @@ function toggleMusicMenu() {
 function playSelectedSong() {
   const select = document.getElementById("music-select");
   const selected = select.value;
-
+  select.options[0].disabled = true;
+  select.options[0].style.display = "none"; 
   if (!selected) return;
 
   audio.src = selected;
@@ -34,6 +35,8 @@ function playSelectedSong() {
 }
 
 function togglePlayPause() {
+  select.options[0].disabled = true;
+  select.options[0].style.display = "none"; 
   if (!audio.src) return;
 
   if (audio.paused) {
