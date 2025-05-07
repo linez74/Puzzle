@@ -2,13 +2,13 @@ const puzzle = document.getElementById("puzzle");
 let tiles = [];
 let isLocked = false;
 
-const affirmations = [
-  "You are exactly where you need to be today.",
-  "You radiate kindness and attract joy effortlessly.",
-  "Everything is unfolding for your highest good.",
-  "You are loved, even on your hardest days.",
-  "You have a soft heart and a strong mind—what a combo!"
-];
+let affirmations = [];
+
+fetch('affirmations.txt')
+  .then(response => response.text())
+  .then(data => {
+      affirmations = [...data.matchAll(/"([^"]+)"/g)].map(match => match[1].trim());
+  });
 
 let audio = new Audio();
 let currentSong = "";
