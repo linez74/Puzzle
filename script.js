@@ -10,6 +10,38 @@ const affirmations = [
   "You have a soft heart and a strong mind—what a combo!"
 ];
 
+let audio = new Audio();
+let currentSong = "";
+
+function toggleMusicMenu() {
+  const menu = document.getElementById("music-menu");
+  menu.classList.toggle("hidden");
+}
+
+function playSelectedSong() {
+  const select = document.getElementById("music-select");
+  const selected = select.value;
+
+  if (!selected) return;
+
+  audio.src = selected;
+  audio.loop = true;
+  audio.play();
+  currentSong = select.options[select.selectedIndex].text;
+
+  document.getElementById("now-playing").textContent = `Now playing: ${currentSong}`;
+}
+
+function togglePlayPause() {
+  if (!audio.src) return;
+
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+}
+
 function showAffirmation() {
   const box = document.getElementById("affirmation-box");
   const text = document.getElementById("affirmation-text");
@@ -104,5 +136,19 @@ function easyWin() {
     showAffirmation();
   }, 200);
 }
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+
+  document.getElementById("heart-container").appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 8000);
+}
+
+setInterval(createHeart, 800);
 
 shuffle();
