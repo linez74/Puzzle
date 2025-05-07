@@ -53,16 +53,21 @@ function moveTile(index) {
 }
 
 function shuffle() {
-  do {
-    createTiles();
-    // Fisher-Yates shuffle
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-    }
-  } while (!isSolvable());
-  drawTiles();
+  // Hide affirmation box
+  const box = document.getElementById("affirmation-box");
+  box.classList.remove("show");
+
+  do {
+    createTiles();
+    // Fisher-Yates shuffle
+    for (let i = tiles.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+  } while (!isSolvable());
+  drawTiles();
 }
+
 
 function isSolvable() {
   const flat = tiles.filter(n => n !== "");
