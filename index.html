@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sliding Puzzle</title>
+  <title>Daily Affirmations Puzzle</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Sliding Puzzle</h1>
+  <h1>Daily Affirmations Puzzle</h1>
   <p>Tap or click tiles to slide them into the empty space.</p>
   <div id="puzzle"></div>
   <button onclick="shuffle()">Shuffle</button>
   <button onclick="easyWin()">Easy Win</button>
+  <div id="affirmation-box" class="hidden">
+  <p id="affirmation-text"></p>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
