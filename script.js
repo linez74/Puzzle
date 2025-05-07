@@ -67,4 +67,9 @@ function checkWin() {
   }
 }
 
+function easyWin() {
+  tiles = [...Array(15).keys()].map(x => x + 1).concat("");
+  drawTiles();
+}
+
 shuffle();
