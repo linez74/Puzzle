@@ -1,6 +1,22 @@
 const puzzle = document.getElementById("puzzle");
 let tiles = [];
 
+const affirmations = [
+  "You are exactly where you need to be today.",
+  "You radiate kindness and attract joy effortlessly.",
+  "Everything is unfolding for your highest good.",
+  "You are loved, even on your hardest days.",
+  "You have a soft heart and a strong mind—what a combo!"
+];
+
+function showAffirmation() {
+  const box = document.getElementById("affirmation-box");
+  const text = document.getElementById("affirmation-text");
+  const random = affirmations[Math.floor(Math.random() * affirmations.length)];
+  text.textContent = random;
+  box.classList.add("show");
+}
+
 function createTiles() {
   tiles = [];
   for (let i = 1; i <= 15; i++) {
