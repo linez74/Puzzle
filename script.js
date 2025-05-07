@@ -79,13 +79,10 @@ function isSolvable() {
 function checkWin() {
   const win = [...Array(15).keys()].map(x => x + 1).concat("");
   if (tiles.every((val, i) => val === win[i])) {
-    setTimeout(() => alert("You solved the puzzle!"), 200);
+    setTimeout(() => {
+  showAffirmation();
+}, 200);
   }
-}
-
-function easyWin() {
-  tiles = [...Array(15).keys()].map(x => x + 1).concat("");
-  drawTiles();
 }
 
 shuffle();
