@@ -1,0 +1,37 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f9f9f9;
+  padding: 20px;
+}
+
+#puzzle {
+  width: 320px;
+  height: 320px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  border: 3px solid #333;
+}
+
+.tile {
+  width: 25%;
+  height: 25%;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2196F3;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.empty {
+  background: #f0f0f0;
+  border: none;
+  cursor: default;
+}
