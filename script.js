@@ -7,7 +7,7 @@ let affirmations = [];
 fetch('affirmations.txt')
   .then(response => response.text())
   .then(data => {
-      affirmations = [...data.matchAll(/"([^"]+)"/g)].map(match => match[1].trim());
+    affirmations = [...data.matchAll(/"([^"]+)"/g)].map(match => match[1].trim());
   });
 
 let audio = new Audio();
@@ -71,40 +71,36 @@ function drawTiles() {
 }
 
 function moveTile(index) {
-  if (isLocked) return;
+  if (isLocked) return;
 
-  const emptyIndex = tiles.indexOf("");
-  const validMoves = [index - 1, index + 1, index - 4, index + 4];
+  const emptyIndex = tiles.indexOf("");
+  const validMoves = [index - 1, index + 1, index - 4, index + 4];
 
-  // prevent wraparound (left/right edge)
-  if (index % 4 === 0 && emptyIndex === index - 1) return;
-  if (index % 4 === 3 && emptyIndex === index + 1) return;
+  // prevent wraparound (left/right edge)
+  if (index % 4 === 0 && emptyIndex === index - 1) return;
+  if (index % 4 === 3 && emptyIndex === index + 1) return;
 
-  if (validMoves.includes(emptyIndex)) {
-    [tiles[emptyIndex], tiles[index]] = [tiles[index], tiles[emptyIndex]];
-    drawTiles();
-    checkWin();
-  }
+  if (validMoves.includes(emptyIndex)) {
+    [tiles[emptyIndex], tiles[index]] = [tiles[index], tiles[emptyIndex]];
+    drawTiles();
+    checkWin();
+  }
 }
-
 
 function shuffle() {
-  isLocked = false; 
-  // Hide affirmation box
-  const box = document.getElementById("affirmation-box");
-  box.classList.remove("show");
+  isLocked = false;
+  const box = document.getElementById("affirmation-box");
+  box.classList.remove("show");
 
-  do {
-    createTiles();
-    // Fisher-Yates shuffle
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-    }
-  } while (!isSolvable());
-  drawTiles();
+  do {
+    createTiles();
+    for (let i = tiles.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+  } while (!isSolvable());
+  drawTiles();
 }
-
 
 function isSolvable() {
   const flat = tiles.filter(n => n !== "");
@@ -123,24 +119,25 @@ function checkWin() {
   if (tiles.every((val, i) => val === win[i])) {
     isLocked = true;
     setTimeout(() => {
-  showAffirmation();
-}, 200);
+      showAffirmation();
+    }, 200);
   }
 }
 
 function easyWin() {
-  tiles = [...Array(15).keys()].map(x => x + 1).concat("");
-  drawTiles();
+  tiles = [...Array(15).keys()].map(x => x + 1).concat("");
+  drawTiles();
   isLocked = true;
-  setTimeout(() => {
-    showAffirmation();
-  }, 200);
+  setTimeout(() => {
+    showAffirmation();
+  }, 200);
 }
+
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
 
   document.getElementById("heart-container").appendChild(heart);
 
