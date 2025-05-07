@@ -57,6 +57,7 @@ function moveTile(index) {
 
 
 function shuffle() {
+  isLocked = false; 
   // Hide affirmation box
   const box = document.getElementById("affirmation-box");
   box.classList.remove("show");
