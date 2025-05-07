@@ -111,9 +111,8 @@ button:hover {
 }
 
 .star {
-  display: block;
   position: absolute;
-  bottom: 0;
+  bottom: -50px;
   width: 20px;
   height: 20px;
   background: pink;
@@ -130,14 +129,19 @@ button:hover {
 @keyframes float {
   0% {
     transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
     opacity: 0.8;
   }
   100% {
-    transform: translateY(-100vh);
+    transform: translateY(-120vh);
     opacity: 0;
   }
 }
-
   
 
 @keyframes pulse {
