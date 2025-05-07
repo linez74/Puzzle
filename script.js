@@ -145,20 +145,22 @@ function easyWin() {
   }, 200);
 }
 
+const container = document.getElementById("star-container");
+
 function createStar() {
   const star = document.createElement("div");
   star.classList.add("star");
   star.style.left = Math.random() * 100 + "vw";
-  star.style.animationDuration = 4 + Math.random() * 4 + "s";
+  const duration = Math.random() * 3 + 3;
+  star.style.animationDuration = `${duration}s, 1s`;
 
-  document.getElementById("heart-container").appendChild(star);
+  container.appendChild(star);
 
-  setTimeout(() => {
-    star.remove();
-  }, 8000);
+  setTimeout(() => star.remove(), duration * 1000);
 }
 
-setInterval(createStar, 800);
+setInterval(createStar, 300);
+
 
 shuffle();
   
