@@ -25,7 +25,7 @@ function playSelectedSong() {
   if (!selected) return;
 
   audio.src = selected;
-  audio.loop = true;
+  audio.loop = false;
   audio.play();
   currentSong = select.options[select.selectedIndex].text;
 
