@@ -115,19 +115,27 @@ function shuffle() {
 }
 
 function isSolvable() {
-  const flat = tiles.filter(n => n !== "");
-  let inversions = 0;
-  for (let i = 0; i < flat.length; i++) {
-    for (let j = i + 1; j < flat.length; j++) {
-      if (flat[i] > flat[j]) inversions++;
-    }
-  }
+  const flat = tiles.filter(n => n !== "");
+  let inversions = 0;
+  for (let i = 0; i < flat.length; i++) {
+    for (let j = i + 1; j < flat.length; j++) {
+      if (flat[i] > flat[j]) inversions++;
+    }
+  }
 
-  const emptyIndex = tiles.indexOf("");
-  const rowFromBottom = 4 - Math.floor(emptyIndex / 4); // 1-based from bottom
+  const emptyIndex = tiles.indexOf("");
+  const rowFromBottom = 4 - Math.floor(emptyIndex / 4); // 1-based from bottom
 
-  // Correct condition for solvability:
-  return (inversions + rowFromBottom) % 2 === 1;
+  // FIXED: correct condition for 4x4 puzzle
+  if (4 % 2 === 0) { // even grid width
+    if (rowFromBottom % 2 === 0) {
+      return inversions % 2 === 1;
+    } else {
+      return inversions % 2 === 0;
+    }
+  } else {
+    return inversions % 2 === 0;
+  }
 }
 
 
