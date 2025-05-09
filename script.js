@@ -100,42 +100,40 @@ function moveTile(index) {
 }
 
 function shuffle() {
-  isLocked = false; 
-  const box = document.getElementById("affirmation-box");
-  box.classList.remove("show");
+  isLocked = false;
+  const box = document.getElementById("affirmation-box");
+  box.classList.remove("show");
 
-  do {
-    createTiles();
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-    }
-  } while (!isSolvable());
-  drawTiles();
+  do {
+    createTiles();
+    for (let i = tiles.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+    }
+  } while (!isSolvable());
+
+  drawTiles(); // draw the solvable state
 }
 
+
 function isSolvable() {
-  const flat = tiles.filter(n => n !== "");
+  const flat = tiles.map(tile => tile === "" ? 0 : tile); // replace "" with 0 for processing
   let inversions = 0;
+
   for (let i = 0; i < flat.length; i++) {
     for (let j = i + 1; j < flat.length; j++) {
-      if (flat[i] > flat[j]) inversions++;
+      if (flat[i] && flat[j] && flat[i] > flat[j]) {
+        inversions++;
+      }
     }
   }
 
   const emptyIndex = tiles.indexOf("");
-  const rowFromBottom = 4 - Math.floor(emptyIndex / 4); // 1-based from bottom
+  const emptyRow = Math.floor(emptyIndex / 4);
+  const rowFromBottom = 3 - emptyRow; // 0-indexed: 0 = bottom row
 
-  // FIXED: correct condition for 4x4 puzzle
-  if (4 % 2 === 0) { // even grid width
-    if (rowFromBottom % 2 === 0) {
-      return inversions % 2 === 1;
-    } else {
-      return inversions % 2 === 0;
-    }
-  } else {
-    return inversions % 2 === 0;
-  }
+  // For 4x4 grid: (inversions + rowFromBottom) must be even
+  return (inversions + rowFromBottom) % 2 === 0;
 }
 
 
