@@ -104,19 +104,29 @@ function shuffle() {
   const box = document.getElementById("affirmation-box");
   box.classList.remove("show");
 
-  do {
-    createTiles();
-    for (let i = tiles.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
-    }
-  } while (!isSolvable());
+  createTiles(); // start solved
+  let emptyIndex = tiles.indexOf("");
 
-  drawTiles(); // draw the solvable state
+  for (let i = 0; i < 1000; i++) {
+    const possibleMoves = [];
+
+    const row = Math.floor(emptyIndex / 4);
+    const col = emptyIndex % 4;
+
+    if (row > 0) possibleMoves.push(emptyIndex - 4); // up
+    if (row < 3) possibleMoves.push(emptyIndex + 4); // down
+    if (col > 0) possibleMoves.push(emptyIndex - 1); // left
+    if (col < 3) possibleMoves.push(emptyIndex + 1); // right
+
+    const moveTo = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    [tiles[emptyIndex], tiles[moveTo]] = [tiles[moveTo], tiles[emptyIndex]];
+    emptyIndex = moveTo;
+  }
+
+  drawTiles();
 }
 
-
-function isSolvable() {
+/* function isSolvable() {
   const flat = tiles.map(tile => tile === "" ? 0 : tile); // replace "" with 0 for processing
   let inversions = 0;
 
@@ -134,7 +144,7 @@ function isSolvable() {
 
   // For 4x4 grid: (inversions + rowFromBottom) must be even
   return (inversions + rowFromBottom) % 2 === 0;
-}
+}*/
 
 
 function checkWin() {
