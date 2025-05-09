@@ -131,6 +131,17 @@ function isSolvable() {
 }
 
 
+function checkWin() {
+  const winCondition = [...Array(15).keys()].map(x => x + 1).concat("");
+  const isSolved = tiles.every((val, index) => val === winCondition[index]);
+
+  if (isSolved) {
+    isLocked = true;
+    setTimeout(() => {
+      showAffirmation();
+    }, 200);
+  }
+}
 
 function easyWin() {
   tiles = [...Array(15).keys()].map(x => x + 1).concat("");
