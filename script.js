@@ -122,19 +122,13 @@ function isSolvable() {
       if (flat[i] > flat[j]) inversions++;
     }
   }
-  const emptyRow = Math.floor(tiles.indexOf("") / 4);
-  return (inversions + emptyRow) % 2 === 0;
+
+  const emptyIndex = tiles.indexOf("");
+  const emptyRowFromBottom = 3 - Math.floor(emptyIndex / 4); // 0-based bottom row
+
+  return (inversions + emptyRowFromBottom) % 2 === 1;
 }
 
-function checkWin() {
-  const win = [...Array(15).keys()].map(x => x + 1).concat("");
-  if (tiles.every((val, i) => val === win[i])) {
-    isLocked = true;
-    setTimeout(() => {
-      showAffirmation();
-    }, 200);
-  }
-}
 
 function easyWin() {
   tiles = [...Array(15).keys()].map(x => x + 1).concat("");
