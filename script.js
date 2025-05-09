@@ -124,11 +124,11 @@ function isSolvable() {
   }
 
   const emptyIndex = tiles.indexOf("");
-  const emptyRowFromBottom = 3 - Math.floor(emptyIndex / 4); // 0-based bottom row
+  const rowFromBottom = 4 - Math.floor(emptyIndex / 4); // 1-based from bottom
 
-  return (inversions + emptyRowFromBottom) % 2 === 1;
+  // Correct condition for solvability:
+  return (inversions + rowFromBottom) % 2 === 1;
 }
-
 
 
 function checkWin() {
